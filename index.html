@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.min.css">
+
+</head>
+
+<body>
+
+
+    <div class="banner">
+        <ul class="imgs">
+            <li class="active"><img src="img/bg2.jpg" alt=""></li>
+            <li><img src="img/bg1.jpg" alt=""></li>
+            <li><img src="img/bg3.jpg" alt=""></li>
+            <li><img src="img/bg4.jpg" alt=""></li>
+        </ul>
+
+
+        <ol class="points">
+            <li class="on"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
+
+    <script src="js/click.js"></script>
+    <script>
+        var index = 0;
+        var time = null;
+        var uls = document.querySelectorAll('.imgs li');
+        var ols = document.querySelectorAll('.points li');
+        // var imgs = document.querySelector('.imgs');
+
+        uls.forEach(function(item, i) {
+
+            obj.slide1(item, 'left', function() {
+                clearInterval(timer)
+                uls[i].classList.remove('active');
+                ols[i].classList.remove('on');
+                index--;
+                if (index < 0) {
+                    index = uls.length - 1;
+                }
+                uls[index].classList.add('active');
+                ols[index].classList.add('on')
+            })
+
+            obj.slide1(item, 'right', function() {
+                clearInterval(timer)
+                uls[i].classList.remove('active');
+                ols[i].classList.remove('on');
+                index++;
+                if (index > uls.length - 1) {
+                    index = 0;
+                }
+                uls[index].classList.add('active');
+                ols[index].classList.add('on')
+            })
+
+            // obj.click(item, function() {
+            //     timer();
+            // })
+
+        })
+
+
+        ols.forEach(function(v, j) {
+            obj.click(v, function() {
+                uls[index].classList.remove('active');
+                ols[index].classList.remove('on');
+                index = j;
+                uls[index].classList.add('active');
+                ols[index].classList.add('on')
+                clearInterval(timer)
+            })
+
+        })
+
+
+
+
+
+
+        timer = setInterval(function() {
+            uls[index].classList.remove('active');
+            ols[index].classList.remove('on')
+            index++;
+            if (index > uls.length - 1) {
+                index = 0;
+            }
+            uls[index].classList.add('active');
+            ols[index].classList.add('on')
+        }, 1500)
+    </script>
+
+</body>
+
+</html>
